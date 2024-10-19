@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-blue-400 p-6">
+    <div className="min-h-screen bg-blue-500 p-6">
       <h1 className="text-center text-4xl font-bold text-zinc-900 mb-8">Good Morning Readers</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.length > 0 && blogs.map((blog: Blogs) => (
