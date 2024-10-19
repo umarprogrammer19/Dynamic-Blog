@@ -31,6 +31,11 @@ export default function Blog(props: { params: { id: string } }) {
                 <button type='submit' className='bg-blue-700 text-white p-2'>Add Comment</button>
             </form>
 
+            <div>
+                {comments.length > 0 && comments.map((item: string, index: number) => {
+                    return <div key={index}>{item}</div>
+                })}
+            </div>
         </div>
     )
 }
