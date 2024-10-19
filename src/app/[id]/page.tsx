@@ -3,13 +3,13 @@ import React, { useRef, useState } from 'react';
 import { Blogs, blogs } from "@/blogs/blogs";
 
 export default function Blog(props: { params: { id: string } }) {
-    const blogId: number = parseInt(props.params.id);
+    const blogId = parseInt(props.params.id);
     const getBlogs = blogs.find((item: Blogs) => item.id === blogId);
 
-    if (!getBlogs) {
-        return <BlogNotFound />;
-    }
+    return getBlogs ? <BlogContent blog={getBlogs} /> : <BlogNotFound />;
+}
 
+function BlogContent({ blog }: { blog: Blogs }) {
     const [comments, setComments] = useState<string[]>([]);
     const getText = useRef<HTMLTextAreaElement>(null);
 
@@ -20,21 +20,23 @@ export default function Blog(props: { params: { id: string } }) {
             setComments([...comments]);
             getText.current.value = "";
         } else {
-            alert("Please Write Comment Before Add...")
+            alert("Please Write Comment Before Add...");
         }
-    }
+    };
 
     const deleteComment = (index: number) => {
         setComments(comments.filter((_: string, i: number) => i !== index));
-    }
+    };
 
     return (
         <div className="min-h-screen bg-blue-500 p-6">
             <div className="max-w-4xl mx-auto bg-gray-200 rounded-lg shadow-lg p-6 mb-6">
-                <h1 className="text-4xl font-semibold text-gray-800 mb-4">{getBlogs.title}</h1>
-                <p className="text-gray-600 mb-8">By <span className="font-medium">{getBlogs.author}</span> on {getBlogs.date}</p>
+                <h1 className="text-4xl font-semibold text-gray-800 mb-4">{blog.title}</h1>
+                <p className="text-gray-600 mb-8">
+                    By <span className="font-medium">{blog.author}</span> on {blog.date}
+                </p>
                 <div className="text-gray-700 leading-relaxed">
-                    <p>{getBlogs.content}</p>
+                    <p>{blog.content}</p>
                 </div>
             </div>
 
