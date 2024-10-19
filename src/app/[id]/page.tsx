@@ -14,7 +14,8 @@ export default function Blog(props: { params: { id: string } }) {
     const addComment = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (getText.current?.value) {
-            setComments([...comments, getText.current.value]);
+            comments.push(getText.current.value);
+            setComments([...comments]);
             getText.current.value = "";
         } else {
             alert("Please Write Comment Before Add...")
