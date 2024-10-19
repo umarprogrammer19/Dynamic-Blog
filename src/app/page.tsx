@@ -12,7 +12,7 @@ export default function Home() {
             <h2 className="text-xl">{blog.title}</h2>
             <p>By {blog.author} on {blog.date}</p>
             <p>{blog.content}</p>
-            <Link href={`/${blog.id}`}></Link>
+            <Link href={`/${blog.id}`} className="text-blue-500">View More</Link>
           </div>
         })
       }
