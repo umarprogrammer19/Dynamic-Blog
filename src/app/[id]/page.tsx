@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Blogs, blogs } from "@/blogs/blogs";
 
 export default function Blog(props: { params: { id: string } }) {
     const getBlogs = blogs.find((item: Blogs) => item.id === parseInt(props.params.id));
+    const [comments, setComments] = useState<string[]>([]);
+
     if (!getBlogs) {
         return <h1>Blog Bot Found</h1>
     }
