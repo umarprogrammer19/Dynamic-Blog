@@ -3,9 +3,11 @@ import React, { useRef, useState } from 'react';
 import { Blogs, blogs } from "@/blogs/blogs";
 
 export default function Blog(props: { params: { id: string } }) {
-    const getBlogs = blogs.find((item: Blogs) => item.id === parseInt(props.params.id));
+    const blogId: number = parseInt(props.params.id);
+    const getBlogs = blogs.find((item: Blogs) => item.id === blogId);
+
     if (!getBlogs) {
-        return <h1 className="text-center text-2xl font-bold text-red-500 mt-8">Blog Not Found</h1>;
+        return <BlogNotFound />;
     }
 
     const [comments, setComments] = useState<string[]>([]);
@@ -73,4 +75,8 @@ export default function Blog(props: { params: { id: string } }) {
             </div>
         </div>
     );
+}
+
+function BlogNotFound() {
+    return <h1 className="text-center text-2xl font-bold text-red-500 mt-8">Blog Not Found</h1>;
 }
