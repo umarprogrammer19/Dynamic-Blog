@@ -1,5 +1,6 @@
 import React from "react";
 import { blogs, Blogs } from "@/blogs/blogs"
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
             <h2 className="text-xl">{blog.title}</h2>
             <p>By {blog.author} on {blog.date}</p>
             <p>{blog.content}</p>
+            <Link href={`/${blog.id}`}></Link>
           </div>
         })
       }
