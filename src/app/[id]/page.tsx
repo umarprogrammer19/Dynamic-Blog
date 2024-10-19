@@ -9,8 +9,17 @@ export default function Blog(props: { params: { id: string } }) {
     }
     const [comments, setComments] = useState<string[]>([]);
     const getText = useRef<HTMLTextAreaElement>(null);
-    const addCommment = () => {
-        getText.current && comments.push(getText.current?.value);
+    const addCommment = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (getText.current) {
+            comments.push(getText.current?.value);
+            setComments([...comments]);
+            getText.current.value = "";
+        }
+    }
+
+    const deleteComment = (index: number) => {
+        comments.splice(index, 1);
         setComments([...comments]);
     }
 
@@ -33,7 +42,10 @@ export default function Blog(props: { params: { id: string } }) {
 
             <div>
                 {comments.length > 0 && comments.map((item: string, index: number) => {
-                    return <div key={index}>{item}</div>
+                    return <div key={index}>
+                        {item}
+                        <button onClick={() => deleteComment(index)}>Remove Comment</button>
+                    </div>
                 })}
             </div>
         </div>
