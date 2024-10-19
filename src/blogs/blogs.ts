@@ -1,4 +1,12 @@
-const blogs = [
+interface Blogs {
+    id: number;
+    title: string;
+    author: string;
+    date: string;
+    content: string;
+}
+
+export const blogs: Blogs[] = [
     {
         id: 1,
         title: "Mastering React Hooks",
