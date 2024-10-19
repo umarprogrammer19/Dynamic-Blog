@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+"use client";
+import React, { useRef, useState } from 'react';
 import { Blogs, blogs } from "@/blogs/blogs";
 
 export default function Blog(props: { params: { id: string } }) {
     const getBlogs = blogs.find((item: Blogs) => item.id === parseInt(props.params.id));
     const [comments, setComments] = useState<string[]>([]);
-
+    const getText = useRef<HTMLTextAreaElement>(null)
     if (!getBlogs) {
         return <h1>Blog Bot Found</h1>
     }
@@ -22,7 +23,7 @@ export default function Blog(props: { params: { id: string } }) {
 
             <h1>Add comment</h1>
             <form>
-                <textarea cols={60} rows={6} className='border border-[black]' placeholder="Write Anything" /> <br />
+                <textarea cols={60} rows={6} className='border border-[black]' placeholder="Write Anything" ref={getText} /> <br />
                 <button className='bg-blue-700 text-white p-2'>Add Comment</button>
             </form>
 
